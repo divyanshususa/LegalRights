@@ -1,0 +1,43 @@
+@keyframes builderAnimation {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.signin-container {
+  width: 300px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  margin-top: 10em;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+
+  /* Apply animation */
+  animation: builderAnimation 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+
+
+.signin-container h2 {
+  text-align: center;
+}
+
+.login-form {
+  margin-top: 20px;
+}
+
+.login-form-button {
+  width: 100%;
+}
+
+.loader {
+  text-align: center;
+  margin-top: 20px;
+}
