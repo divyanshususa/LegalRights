@@ -6,7 +6,7 @@ import PreviewTemplate from "./PreviewTemplate";
 import { FaRegFileAlt } from "react-icons/fa";
 
 
-const Home = () => {
+const Home = ({temp}) => {
   const [formData, setFormData] = useState({
     colonyName: "",
     category: "",
@@ -146,7 +146,7 @@ const Home = () => {
           </div>
         )}
       </Container>
-      <PreviewTemplate />
+      <PreviewTemplate temp={temp} />
     </>
   );
 };

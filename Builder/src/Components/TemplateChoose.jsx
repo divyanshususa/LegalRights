@@ -5,9 +5,9 @@ import "./TemplateChoose.css"; // Import CSS file for additional styles
 
 const { Option } = Select;
 
-const TemplateChoose = () => {
+const TemplateChoose = ({ choosetemp }) => {
   const [selectedTemplate, setSelectedTemplate] = useState(null);
-
+  choosetemp(selectedTemplate);
   const handleTemplateSelect = (value) => {
     setSelectedTemplate(value);
   };

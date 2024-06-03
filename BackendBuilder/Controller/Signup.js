@@ -3,6 +3,7 @@ const userservice = require("../Services/Signup");
 
 async function createdUser(req, res) {
   try {
+    console.log("here user",req.body)
     const userdata = req.body;
     console.log("the new",userdata)
     const user = await userservice.createUser(userdata);

@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import { Table, Input, Space, Button, Modal, Form, InputNumber } from "antd"; // Import Modal, Form, and InputNumber
+import { Table, Input, Space, Button, Modal, Form, InputNumber } from "antd";
+import { useParams } from "react-router-dom"; // Import useParams for extracting the post ID from URL
 
 const { Search } = Input;
 
@@ -10,6 +11,10 @@ const UserHistory = () => {
   const [selectedRecord, setSelectedRecord] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [form] = Form.useForm();
+  const [postInfo, setPostInfo] = useState(null);
+
+  const { id } = useParams();
+  // const { userInfo } = useContext(UserContext);
 
   useEffect(() => {
     const fetchUserRecords = async () => {
@@ -27,6 +32,16 @@ const UserHistory = () => {
 
     fetchUserRecords();
   }, []);
+
+  useEffect(() => {
+    if (id) {
+      fetch(`http://localhost:5000/api/posts/664b99e1e53750d554ee00c1`).then((response) => {
+        response.json().then((postInfo) => {
+          setPostInfo(postInfo);
+        });
+      });
+    }
+  }, [id]);
 
   const handleSearch = (value) => {
     const filtered = userRecords.filter((record) =>
@@ -66,7 +81,6 @@ const UserHistory = () => {
       dataIndex: "colonyName",
       key: "colonyName",
     },
-
     {
       title: "Location",
       dataIndex: "location",
@@ -92,7 +106,6 @@ const UserHistory = () => {
       dataIndex: "costOfConstruction",
       key: "costOfConstruction",
     },
-
     {
       title: "Total Flat Area",
       dataIndex: "totalFlatArea",
@@ -131,6 +144,29 @@ const UserHistory = () => {
       dataIndex: "useFactor",
       key: "useFactor",
       sorter: (a, b) => a.useFactor - b.useFactor,
+    },
+    {
+      title: "Preview",
+      key: "preview",
+      render: (text, record) => (
+        <Button
+          type="primary"
+          onClick={() => {
+            if (record.id) {
+              fetch(`http://localhost:5000/api/posts/${record.id}`).then(
+                (response) => {
+                  response.json().then((postInfo) => {
+                    setPostInfo(postInfo);
+                    setIsModalVisible(true);
+                  });
+                }
+              );
+            }
+          }}
+        >
+          Preview
+        </Button>
+      ),
     },
     {
       title: "Action",
@@ -203,6 +239,20 @@ const UserHistory = () => {
           </Form.Item>
         </Form>
       </Modal>
+
+      {postInfo && (
+        <Modal
+          title="Post Preview"
+          visible={true}
+          onCancel={() => setPostInfo(null)}
+          footer={null}
+        >
+          <div
+            className="content"
+            dangerouslySetInnerHTML={{ __html: postInfo.content }}
+          />
+        </Modal>
+      )}
     </div>
   );
 };

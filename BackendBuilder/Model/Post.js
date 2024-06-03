@@ -11,8 +11,20 @@ const PostSchema = new mongoose.Schema({
   },
   userId: {
     type: String,
-  
+    // required: true, // Ensure userId is required if needed
+  },
+  Templeate: {
+    type: Boolean,
+    default: 'false',
+  },
+  Name: {
+    type: String,
   },
 });
 
-module.exports = mongoose.model("Post", PostSchema);
+const Post = mongoose.model("Post", PostSchema);
+module.exports = Post; 
+  
+
+
+
