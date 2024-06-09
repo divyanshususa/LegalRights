@@ -10,6 +10,10 @@ import TemplateChoose from "./Components/TemplateChoose";
 import Admin from "./Components/Admin";
 import DocumentPreview from "./Components/DocumentPreview";
 import DocumentEditor from "./Components/DocumentPreview";
+import DataEntry from "./Components/DataEntry";
+import DailyLeger from "./DataEntry/DailyLeger";
+import DocumentDetail from "./DataEntry/DocumentDetail";
+import PropertyDetails from "./DataEntry/PropertyDetails";
 
 
 
@@ -47,6 +51,10 @@ export default function Routing() {
           <Route path="/user" element={<MainLayout />}>
             <Route index element={<Home temp={temp} />} />
             <Route path="userhistory" element={<UserHistory />} />
+            <Route path="dailyLedger" element={<DailyLeger />} />
+            <Route path="documentdetail" element={<DocumentDetail />} />
+            <Route path="propertydetails" element={<PropertyDetails />} />
+            <Route path="dataentry" element={<DataEntry />} />
           </Route>
         </Routes>
       </BrowserRouter>

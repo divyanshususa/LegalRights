@@ -78,7 +78,8 @@ module.exports.getPostById = async (req, res) => {
 module.exports.updatePostByName = async (req, res) => {
   try {
     console.log(req.params.Name);
-   const post = await Post.findOne({ Name: req.params.Name });
+    const post = await Post.findOne({ Name: req.params.Name });
+    
    if (!post || post.Templeate != true) {
      return res.status(404).json({ message: "Template not found" });
    }

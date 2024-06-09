@@ -27,14 +27,20 @@ const MainLayout = () => {
   // Fallback values for colorBgContainer and borderRadiusLG
   const colorBgContainer = "#ffffff"; // Replace with your default color
   const borderRadiusLG = "8px"; // Replace with your default border radius
-
+ 
 const token = localStorage.getItem("token");
   const handlesignout = () => {
     const toe = localStorage.removeItem("token");
     console.log("this is new " ,toe)
     navigate("/");
   };
-
+  // const [color, setcolor] = useState('red');
+  // const [text, settext] = useState(`NAME OF city ${color}`);
+  // // let y = setcolor('blue')
+  // // let text = `NAME OF COLOR ${color}`;
+  
+  // settext(text.replace(color, "DELHI"))
+  // console.log("text",text,"result",text);
   return (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -47,6 +53,13 @@ const token = localStorage.getItem("token");
             DashBoard
           </Menu.Item>
 
+          <Menu.Item
+            key="dataentry"
+            icon={<RxDashboard />}
+            onClick={() => navigate("/user/dataentry")}
+          >
+            DataEntry
+          </Menu.Item>
           <Menu.Item
             key="userhistory"
             icon={<RxDashboard />}
