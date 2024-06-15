@@ -1,0 +1,42 @@
+.template-choose-container {
+  /* background-color: #f0f0f0; Set background color */
+  /* padding: 5px; */
+  /* border-radius: 10px; */
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); Add shadow for depth */
+}
+
+.template-choose-title {
+  font-size: 36px;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 20px;
+  animation: fadeIn 1s ease; /* Add fade-in animation */
+}
+
+.template-choose-select {
+  width: 300px;
+}
+
+.template-choose-button {
+  font-size: 16px;
+  /* padding: 10px 20px; */
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.template-choose-button:hover {
+  background-color: #0056b3;
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
