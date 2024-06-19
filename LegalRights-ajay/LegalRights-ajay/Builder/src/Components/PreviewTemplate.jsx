@@ -43,7 +43,7 @@ export default function PreviewTemplate({ temp }) {
       console.error("Failed to fetch template:", error);
     }
   };
-
+    const userId = JSON.parse(localStorage.getItem("user"));
   const createNewPost = async (ev) => {
     ev.preventDefault();
 
@@ -51,7 +51,7 @@ export default function PreviewTemplate({ temp }) {
       const response = await axios.post("/api/Createposts", {
         description: content,
         Name: temp,
-        userId: user._id,
+        userId: userId._id,
       });
 
       if (response.status === 201) {

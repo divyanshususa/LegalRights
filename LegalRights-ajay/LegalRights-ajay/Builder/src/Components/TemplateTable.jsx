@@ -4,6 +4,7 @@ import { Table, Button, Modal } from "antd";
 const TemplateTable = ({ data }) => {
   const [previewModalVisible, setPreviewModalVisible] = useState(false);
   const [previewContent, setPreviewContent] = useState("");
+  console.log("Temptable", data);
 
   const columns = [
     {
@@ -20,7 +21,10 @@ const TemplateTable = ({ data }) => {
       title: "Action",
       key: "action",
       render: (text, record) => (
-        <Button type="primary" onClick={() => handlePreview(record.descriptions)}>
+        <Button
+          type="primary"
+          onClick={() => handlePreview(record.description)}
+        >
           Preview
         </Button>
       ),
@@ -28,29 +32,28 @@ const TemplateTable = ({ data }) => {
   ];
 
   const handlePreview = (description) => {
-
     setPreviewContent(description);
     setPreviewModalVisible(true);
   };
 
   return (
     <div>
-      <Table columns={columns} dataSource={data}  pagination={{ pageSize: 5 }} />
-
-    
-
+      <Table
+        columns={columns}
+        dataSource={Array.isArray(data) ? data : [data]}
+        pagination={{ pageSize: 5 }}
+      />
       <Modal
-  title="Description Preview"
-  visible={previewModalVisible}
-  onCancel={() => setPreviewModalVisible(false)}
-  footer={null}
-  width={1000} // Set the width of the modal
->
-  <div style={{ maxHeight: "70vh", overflowY: "auto" }}>
-    <div dangerouslySetInnerHTML={{ __html: previewContent }} />
-  </div>
-</Modal>
-
+        title="Description Preview"
+        visible={previewModalVisible}
+        onCancel={() => setPreviewModalVisible(false)}
+        footer={null}
+        width={1000} // Set the width of the modal
+      >
+        <div style={{ maxHeight: "70vh", overflowY: "auto" }}>
+          <div dangerouslySetInnerHTML={{ __html: previewContent }} />
+        </div>
+      </Modal>
     </div>
   );
 };

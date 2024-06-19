@@ -43,8 +43,9 @@ module.exports.getPosts = async (req, res) => {
 
 module.exports.getPostById = async (req, res) => {
   try {
-    console.log(req.params.id);
+    console.log("user check",req.params.id);
     const post = await Post.findById(req.params.id);
+    console.log("check post",post)
     if (!post) {
       return res.status(404).json({ message: "Post not found" });
     }
@@ -52,6 +53,23 @@ module.exports.getPostById = async (req, res) => {
   } catch (err) {
     console.error(err);
     return res.status(500).json({ message: "Error retrieving post" });
+  }
+};
+
+
+module.exports.getPostsByUserId = async (req, res) => {
+  try {
+    console.log("user check", req.params);
+    const userId = req.params.id; // Assuming 'id' is the parameter name
+    const posts = await Post.find({ userId });
+    console.log("check posts", posts);
+    if (posts.length === 0) {
+      return res.status(404).json({ message: "Posts not found" });
+    }
+    return res.status(200).json({ posts });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Error retrieving posts" });
   }
 };
 

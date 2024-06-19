@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Table, Input } from "antd";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const UserTable = () => {
   const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [searchText, setSearchText] = useState("");
-
+  const navigate = useNavigate()
   const fetchData = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:5000/getuser", {
+      const response = await axios.get("http://localhost:5000/user", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -70,7 +71,9 @@ const UserTable = () => {
   return (
     <>
       {/* Add debug output here */}
-      <h1>Admin Page</h1>
+      <h1 style={{ alignItems: "center", color: "black", backgroundColor: "Highlight",fontFamily:"monospace bold" }} onClick={() => {
+        navigate("/")
+      }}>Admin Page</h1>
       {/* <pre>{JSON.stringify(filteredUsers, null, 2)}</pre> */}
       <Search
         placeholder="Search by name"

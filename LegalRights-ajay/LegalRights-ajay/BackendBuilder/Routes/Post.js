@@ -5,6 +5,8 @@ const router = express.Router();
 router.post("/Createposts", postController.createPost);
 router.get("/GetAllposts", postController.getPosts);
 router.get("/GetByIdposts/:id", postController.getPostById);
+router.get("/getpostbyuserid/:id", postController.getPostsByUserId);
+
 router.get("/getposts/:Name", postController.getPostByName);
 router.put("/Updateposts/:Name", postController.updatePostByName); 
 
