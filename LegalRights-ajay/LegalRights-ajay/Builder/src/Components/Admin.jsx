@@ -1,27 +1,42 @@
 import React, { useState, useEffect } from "react";
-import { Table, Input } from "antd";
+import { Table, Input, Modal, Button, List, Pagination } from "antd";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const UserTable = () => {
   const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState([]);
+  const [posts, setPosts] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [searchText, setSearchText] = useState("");
-  const navigate = useNavigate()
+  const [previewModalVisible, setPreviewModalVisible] = useState(false);
+  const [previewContent, setPreviewContent] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(5); // Set the number of posts per page
+  const navigate = useNavigate();
+
   const fetchData = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:5000/user", {
+      const userResponse = await axios.get("http://localhost:5000/user", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      console.log(response.data.users)
-      setUsers(response.data.users); // Update to set the users array
-      setFilteredUsers(response.data.users); // Update to set the filtered users array
+      const postResponse = await axios.get(
+        "http://localhost:5000/api/GetAllposts",
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+
+      setUsers(userResponse.data.users);
+      setPosts(postResponse.data.posts);
+      setFilteredUsers(userResponse.data.users);
     } catch (error) {
-      console.error("Error fetching user data:", error);
+      console.error("Error fetching data:", error);
     } finally {
       setLoading(false);
     }
@@ -39,6 +54,17 @@ const UserTable = () => {
   const handleReset = (clearFilters) => {
     clearFilters();
     setSearchText("");
+  };
+
+  const handlePreview = (userId) => {
+    const userPosts = posts.filter((post) => post.userId === userId);
+    setPreviewContent(userPosts);
+    setCurrentPage(1); // Reset to first page whenever a new user is selected
+    setPreviewModalVisible(true);
+  };
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
   };
 
   const columns = [
@@ -64,17 +90,39 @@ const UserTable = () => {
       dataIndex: "role",
       key: "role",
     },
+    {
+      title: "Posts",
+      key: "posts",
+      render: (text, record) => (
+        <Button type="primary" onClick={() => handlePreview(record._id)}>
+          View Posts
+        </Button>
+      ),
+    },
   ];
 
   const { Search } = Input;
 
+  // Pagination logic for the posts
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = previewContent.slice(indexOfFirstPost, indexOfLastPost);
+
   return (
     <>
-      {/* Add debug output here */}
-      <h1 style={{ alignItems: "center", color: "black", backgroundColor: "Highlight",fontFamily:"monospace bold" }} onClick={() => {
-        navigate("/")
-      }}>Admin Page</h1>
-      {/* <pre>{JSON.stringify(filteredUsers, null, 2)}</pre> */}
+      <h1
+        style={{
+          alignItems: "center",
+          color: "black",
+          backgroundColor: "Highlight",
+          fontFamily: "monospace bold",
+        }}
+        onClick={() => {
+          navigate("/");
+        }}
+      >
+        Admin Page
+      </h1>
       <Search
         placeholder="Search by name"
         onSearch={handleSearch}
@@ -84,18 +132,47 @@ const UserTable = () => {
         columns={columns}
         dataSource={filteredUsers.filter(
           (user) =>
-            (user.firstName ) ||
-            (user.lastName ) ||
-            (user.email &&
-              user.email.toLowerCase().includes(searchText.toLowerCase())) ||
-            (user.role)
+            user.firstName.toLowerCase().includes(searchText.toLowerCase()) ||
+            user.lastName.toLowerCase().includes(searchText.toLowerCase()) ||
+            user.email.toLowerCase().includes(searchText.toLowerCase()) ||
+            user.role.toLowerCase().includes(searchText.toLowerCase())
         )}
         loading={loading}
         pagination={{ pageSize: 10 }}
       />
+      <Modal
+        title="Posts Preview"
+        visible={previewModalVisible}
+        onCancel={() => setPreviewModalVisible(false)}
+        footer={null}
+        width={1000}
+      >
+        <div style={{ maxHeight: "70vh", overflowY: "auto" }}>
+          <List
+            dataSource={currentPosts}
+            renderItem={(post) => (
+              <List.Item key={post._id}>
+                <div dangerouslySetInnerHTML={{ __html: post.description }} />
+                <div>
+                  <strong>Name:</strong> {post.Name}
+                </div>
+                <div>
+                  <strong>Created Date:</strong>{" "}
+                  {new Date(post.CreatedDate).toLocaleString()}
+                </div>
+              </List.Item>
+            )}
+          />
+          <Pagination
+            current={currentPage}
+            pageSize={postsPerPage}
+            total={previewContent.length}
+            onChange={handlePageChange}
+          />
+        </div>
+      </Modal>
     </>
   );
-
 };
 
 export default UserTable;
