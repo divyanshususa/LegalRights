@@ -6,7 +6,7 @@ import Editor from "../Editor";
 import axios from "../Service/axios";
 import { Button, Select } from "antd";
 import { templatePlaceholders } from "./Utility/placeholders"; // Adjust the path as needed
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const { Option } = Select;
 
@@ -43,7 +43,7 @@ export default function PreviewTemplate({ temp }) {
       console.error("Failed to fetch template:", error);
     }
   };
-    const userId = JSON.parse(localStorage.getItem("user"));
+  const userId = JSON.parse(localStorage.getItem("user"));
   const createNewPost = async (ev) => {
     ev.preventDefault();
 
@@ -93,7 +93,7 @@ export default function PreviewTemplate({ temp }) {
   };
 
   if (redirect) {
-    return <Navigate to="/user" />;
+    return <Navigate to="/user/userhistory" />;
   }
 
   return (

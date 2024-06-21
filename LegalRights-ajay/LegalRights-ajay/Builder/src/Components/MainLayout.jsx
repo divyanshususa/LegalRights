@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./MainLayout.css";
 import {
-  MenuFoldOutlined, 
+  MenuFoldOutlined,
   MenuUnfoldOutlined,
   UploadOutlined,
   UserOutlined,
@@ -12,7 +12,7 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import { FiMapPin } from "react-icons/fi";
 import { HiMiniBuildingLibrary } from "react-icons/hi2";
 import { RxDashboard } from "react-icons/rx";
-import { IoIosNotifications } from "react-icons/io"; 
+import { IoIosNotifications } from "react-icons/io";
 import { Layout, Menu, Button } from "antd";
 import { FaTruckFast } from "react-icons/fa6";
 import { Outlet } from "react-router-dom";
@@ -27,20 +27,14 @@ const MainLayout = () => {
   // Fallback values for colorBgContainer and borderRadiusLG
   const colorBgContainer = "#ffffff"; // Replace with your default color
   const borderRadiusLG = "8px"; // Replace with your default border radius
- 
-const token = localStorage.getItem("token");
+
+  const token = localStorage.getItem("token");
   const handlesignout = () => {
     const toe = localStorage.removeItem("token");
-    console.log("this is new " ,toe)
+    console.log("this is new ", toe);
     navigate("/");
   };
-  // const [color, setcolor] = useState('red');
-  // const [text, settext] = useState(`NAME OF city ${color}`);
-  // // let y = setcolor('blue')
-  // // let text = `NAME OF COLOR ${color}`;
-  
-  // settext(text.replace(color, "DELHI"))
-  // console.log("text",text,"result",text);
+
   return (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>

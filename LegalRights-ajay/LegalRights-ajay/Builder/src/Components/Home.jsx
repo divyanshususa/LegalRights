@@ -7,7 +7,7 @@ import { FaRegFileAlt } from "react-icons/fa";
 import TemplateChoose from "./TemplateChoose";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const Home = ({temp}) => {
+const Home = ({ temp }) => {
   const [formData, setFormData] = useState({
     colonyName: "",
     category: "",
@@ -56,43 +56,17 @@ const Home = ({temp}) => {
     }
   };
 
-  // Define field configurations
-  const fields = [
-    { id: "colonyName", label: "Name of Colony", type: "text" },
-    { id: "category", label: "Category of Colony", type: "text" },
-    { id: "propertyType", label: "Type of Property", type: "text" },
-    {
-      id: "minLandRate",
-      label: "Minimum Rate of Land Notified by Govt. per Sq.Mtrs.",
-      type: "text",
-    },
-    {
-      id: "costOfConstruction",
-      label: "Cost of Construction notified by Government in Sq.Mtrs.",
-      type: "text",
-    },
-    { id: "totalFlatArea", label: "Total Flat Area in Sq.Mtrs.", type: "text" },
-    { id: "numberOfFloors", label: "Number of Floors", type: "number" },
-    { id: "isLiftProvided", label: "Lift provided", type: "checkbox" },
-    { id: "yearOfConstruction", label: "Year of Construction", type: "text" },
-    { id: "typeOfColony", label: "Type of Colony", type: "text" },
-    { id: "buildingStatus", label: "Status of Building", type: "text" },
-    { id: "useFactor", label: "Use Factor", type: "text" },
-  ];
-  const [temps, settemp] = useState('');
+
+  const [temps, settemp] = useState("");
 
   function choosetemp(temps) {
-    console.log("routing",temps);
-    settemp(temps)
-
-
-    
+    console.log("routing", temps);
+    settemp(temps);
   }
   return (
     <>
-            <TemplateChoose choosetemp={choosetemp}/>
+      <TemplateChoose choosetemp={choosetemp} />
       <Container className="sale-main-form-container">
-      
         {submitted && (
           <div className="submitted-message">
             Data submitted successfully! Thank you.

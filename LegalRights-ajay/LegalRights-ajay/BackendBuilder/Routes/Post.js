@@ -3,7 +3,7 @@ const postController = require("../Controller/Post"); // adjust the path as need
 const router = express.Router();
 
 router.post("/Createposts", postController.createPost);
-router.get("/GetAllposts", postController.getPosts);
+router.get("/GetAllposts", postController.getPosts); 
 router.get("/GetByIdposts/:id", postController.getPostById);
 router.get("/getpostbyuserid/:id", postController.getPostsByUserId);
 

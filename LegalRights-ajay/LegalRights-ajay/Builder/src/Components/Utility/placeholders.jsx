@@ -55,4 +55,9 @@ export const templatePlaceholders = {
     "Use Factor",
     "Location / Land Mark",
   ],
+  "BAYANA SAMPLE FINAL": [],
+  "Will": [],
+  "FAMILY WILL": [],
+  "Rent Deed":[],
+  "VEHICLE SALE AND PURTUESED-5": [],
 };

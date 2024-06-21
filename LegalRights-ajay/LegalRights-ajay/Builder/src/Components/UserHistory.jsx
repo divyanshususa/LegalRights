@@ -19,7 +19,7 @@ const UserHistory = () => {
           `http://localhost:5000/api/getpostbyuserid/${userId._id}`
         );
         const posts = response.data.posts;
-        console.log("filteredRecords hostiory",filteredRecords,"post",posts)
+        console.log("filteredRecords hostiory", filteredRecords, "post", posts);
         // Ensure posts is an array before setting state
         setUserRecords(Array.isArray(posts) ? posts : [posts]);
         setFilteredRecords(Array.isArray(posts) ? posts : [posts]);

@@ -23,11 +23,20 @@ const TemplateChoose = ({ choosetemp }) => {
         value={selectedTemplate}
       >
         <Option value="Sale Deed">Sale Deed</Option>
-        <Option value="Rent Deed">Rent Deed</Option>
-        <Option value="Gift Deed">Gift Deed</Option>
         <Option value="TWO PARTIES">TWO PARTIES</Option>
-        <Option value="Adoption Deed">Adoption Deed</Option>
-        <Option value="Will"> Will</Option>
+        <Option value="Rent Deed">Rent Deed</Option>
+        <Option value="Will">Will</Option>
+        <Option value="VEHICLE SALE AND PURTUESED-5">
+          VEHICLE SALE AND PURTUESED-5
+        </Option>
+        <Option value="FAMILY WILL">FAMILY WILL</Option>
+        <Option value="Gift Deed">Gift Deed</Option>
+        <Option value="VEHICLE SALE AND PURTUESED-5">
+          VEHICLE SALE AND PURTUESED-5
+        </Option>
+
+        <Option value="BAYANA SAMPLE FINAL">BAYANA SAMPLE FINAL</Option>
+        {/* <Option value="Will"> Will</Option>
         <Option value="Construction Agreement">Construction Agreement</Option>
         <Option value="Collaboration Agreement">Collaboration Agreement</Option>
         <Option value="No-rent Agreement">No-rent Agreement</Option>
@@ -37,15 +46,10 @@ const TemplateChoose = ({ choosetemp }) => {
         <Option value="Property Loan">Property Loan</Option>
         <Option value="Release Deed">Release Deed</Option>
         <Option value="Trust Deed">Trust Deed</Option>
-        <Option value="Two Parties">Two Parties</Option>
+        <Option value="Two Parties">Two Parties</Option> */}
         {/* Add more deed names as needed */}
       </Select>
       <br />
-      {/* <Link to={`/user?template=${selectedTemplate}`}>
-        <Button type="primary" className="template-choose-button">
-          Submit
-        </Button>
-      </Link> */}
     </div>
   );
 };

@@ -18,21 +18,16 @@ import Ledger from "./DataEntry/Ledger";
 import LedgerEntry from "./DataEntry/LedgerEntry";
 import TemplateAdd from "./Components/TemplateAdd";
 
-
-
-
 export default function Routing() {
-  const [temp, settemp] = useState('0');
- const a = '1'
+  const [temp, settemp] = useState("0");
+  const a = "1";
   function choosetemp(temp) {
-    console.log("routing",temp);
-    settemp(temp)
-    
+    console.log("routing", temp);
+    settemp(temp);
   }
   function tempreturn(temp) {
-   return temp
- }
-
+    return temp;
+  }
 
   return (
     <div>
@@ -40,7 +35,7 @@ export default function Routing() {
         <Routes>
           <Route path="/" element={<Signin />} />
           <Route path="/temp" element={<DocumentPreview />} />
-          <Route path="/tempadd" element={<TemplateAdd/>} />
+          <Route path="/tempadd" element={<TemplateAdd />} />
           <Route path="/admin" element={<Admin />} />
 
           <Route path="/signup" element={<SignUp />} />
