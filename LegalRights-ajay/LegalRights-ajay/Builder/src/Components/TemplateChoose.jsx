@@ -1,16 +1,29 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Select, Button } from "antd";
 import { Link } from "react-router-dom";
 import "./TemplateChoose.css"; // Import CSS file for additional styles
+import Witness from "./TemplateLayout";
+import { useTemplate } from "../Hooks/TemplateContext";
 
 const { Option } = Select;
 
 const TemplateChoose = ({ choosetemp }) => {
   const [selectedTemplate, setSelectedTemplate] = useState(null);
+
   choosetemp(selectedTemplate);
+  const { updateTemplate } = useTemplate();
+
+
+
+
+
   const handleTemplateSelect = (value) => {
     setSelectedTemplate(value);
+    
+  updateTemplate(value);
   };
+
+
 
   return (
     <div className="template-choose-container">

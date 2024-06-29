@@ -20,7 +20,9 @@ import { Dropdown } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const { Header, Sider, Content } = Layout;
-
+const remove = () => {
+  localStorage.removeItem("token");
+};
 const MainLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
   const navigate = useNavigate();
@@ -64,7 +66,10 @@ const MainLayout = () => {
           <Menu.Item
             key="/"
             icon={<RxDashboard />}
-            onClick={() => navigate("/")}
+            onClick={() => {
+              localStorage.removeItem("token");
+              navigate("/");
+            }}
           >
             Signout
           </Menu.Item>

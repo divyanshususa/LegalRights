@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../Service/axios";
 import { Table, Input, Space } from "antd";
 import { useParams } from "react-router-dom"; // Import useParams for extracting the post ID from URL
 import TemplateTable from "./TemplateTable";
@@ -15,9 +15,7 @@ const UserHistory = () => {
     const fetchUserRecords = async () => {
       try {
         const userId = JSON.parse(localStorage.getItem("user"));
-        const response = await axios.get(
-          `http://localhost:5000/api/getpostbyuserid/${userId._id}`
-        );
+        const response = await axios.get(`/api/getpostbyuserid/${userId._id}`);
         const posts = response.data.posts;
         console.log("filteredRecords hostiory", filteredRecords, "post", posts);
         // Ensure posts is an array before setting state

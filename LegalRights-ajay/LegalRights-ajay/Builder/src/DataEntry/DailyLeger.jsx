@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Table, Input, Button,Form ,DatePicker} from "antd";
+import { Table, Input, Button, Form, DatePicker } from "antd";
 import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 
-import axios from 'axios';
+import axios from "../Service/axios";
 
 const { TextArea } = Input;
 
@@ -35,20 +35,21 @@ const DataEntryTable = () => {
   const onFinish = (values) => {
     const newData = {
       ...values,
-      date: values.date.format('YYYY-MM-DD'),
-      regDate: values.regDate.format('YYYY-MM-DD')
+      date: values.date.format("YYYY-MM-DD"),
+      regDate: values.regDate.format("YYYY-MM-DD"),
     };
-    axios.post('/api/entry', newData)
-      .then(response => {
-        message.success('Data saved successfully');
+    axios
+      .post("/api/entry", newData)
+      .then((response) => {
+        message.success("Data saved successfully");
         setDataSource([...dataSource, newData]);
         form.resetFields();
       })
-      .catch(error => {
-        message.error('Failed to save data');
+      .catch((error) => {
+        message.error("Failed to save data");
       });
   };
-  
+
   const handleDelete = (key) => {
     const newData = dataSource.filter((item) => item.key !== key);
     setDataSource(newData);
@@ -201,47 +202,75 @@ const DataEntryTable = () => {
 
   return (
     <div className="data-entry-table">
-
-<Form form={form} layout="vertical" onFinish={onFinish} style={{display:"grid", gridTemplateColumns: "auto auto auto auto auto ", gap:"5px"}}>
-      <Form.Item name="date" label="DATE" rules={[{ required: true }]}>
-        <DatePicker />
-      </Form.Item>
-      <Form.Item name="slipNo" label="SLIP NO" rules={[{ required: true }]}>
-        <Input />
-      </Form.Item>
-      <Form.Item name="doc" label="DOC" rules={[{ required: true }]}>
-        <Input />
-      </Form.Item>
-      <Form.Item name="firstParty" label="1ST PARTY" rules={[{ required: true }]}>
-        <Input />
-      </Form.Item>
-      <Form.Item name="secondParty" label="2ND PARTY" rules={[{ required: true }]}>
-        <Input />
-      </Form.Item>
-      <Form.Item name="propDetail" label="PROP. DETAIL" rules={[{ required: true }]}>
-        <Input rows={4} />
-      </Form.Item>
-      <Form.Item name="regNo" label="REG. NO" rules={[{ required: true }]}>
-        <Input />
-      </Form.Item>
-      <Form.Item name="bNo" label="B. NO" rules={[{ required: true }]}>
-        <Input />
-      </Form.Item>
-      <Form.Item name="volNo" label="VOL NO" rules={[{ required: true }]}>
-        <Input />
-      </Form.Item>
-      <Form.Item name="pageNo" label="PAGE NO" rules={[{ required: true }]}>
-        <Input />
-      </Form.Item>
-      <Form.Item name="regDate" label="REG. DATE" rules={[{ required: true }]}>
-        <DatePicker />
-      </Form.Item>
-      <Form.Item>
-        <Button type="primary" htmlType="submit" style={{marginTop:"30px"}}>
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
+      <Form
+        form={form}
+        layout="vertical"
+        onFinish={onFinish}
+        style={{
+          display: "grid",
+          gridTemplateColumns: "auto auto auto auto auto ",
+          gap: "5px",
+        }}
+      >
+        <Form.Item name="date" label="DATE" rules={[{ required: true }]}>
+          <DatePicker />
+        </Form.Item>
+        <Form.Item name="slipNo" label="SLIP NO" rules={[{ required: true }]}>
+          <Input />
+        </Form.Item>
+        <Form.Item name="doc" label="DOC" rules={[{ required: true }]}>
+          <Input />
+        </Form.Item>
+        <Form.Item
+          name="firstParty"
+          label="1ST PARTY"
+          rules={[{ required: true }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          name="secondParty"
+          label="2ND PARTY"
+          rules={[{ required: true }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          name="propDetail"
+          label="PROP. DETAIL"
+          rules={[{ required: true }]}
+        >
+          <Input rows={4} />
+        </Form.Item>
+        <Form.Item name="regNo" label="REG. NO" rules={[{ required: true }]}>
+          <Input />
+        </Form.Item>
+        <Form.Item name="bNo" label="B. NO" rules={[{ required: true }]}>
+          <Input />
+        </Form.Item>
+        <Form.Item name="volNo" label="VOL NO" rules={[{ required: true }]}>
+          <Input />
+        </Form.Item>
+        <Form.Item name="pageNo" label="PAGE NO" rules={[{ required: true }]}>
+          <Input />
+        </Form.Item>
+        <Form.Item
+          name="regDate"
+          label="REG. DATE"
+          rules={[{ required: true }]}
+        >
+          <DatePicker />
+        </Form.Item>
+        <Form.Item>
+          <Button
+            type="primary"
+            htmlType="submit"
+            style={{ marginTop: "30px" }}
+          >
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
 
       <Button
         type="primary"

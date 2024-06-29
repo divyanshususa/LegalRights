@@ -4,9 +4,6 @@ import "react-quill/dist/quill.snow.css";
 import Quill from "quill";
 import { TableModule } from "quill-table";
 
-// Register table module if needed
-Quill.register("modules/table", TableModule);
-
 // Extend the font size options
 const Font = Quill.import("formats/font");
 Font.whitelist = ["rockwell", "sans-serif"];

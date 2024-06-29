@@ -12,7 +12,7 @@ const TemplateAdd = () => {
     event.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/templates/cretaetemplates",
+        "https://legalrights-1.onrender.com/templates/cretaetemplates",
         {
           descriptions,
           Name: name,

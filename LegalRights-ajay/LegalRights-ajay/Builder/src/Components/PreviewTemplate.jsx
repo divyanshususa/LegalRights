@@ -1,73 +1,106 @@
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import Editor from "../Editor";
 import axios from "../Service/axios";
 import { Button, Select } from "antd";
 import { templatePlaceholders } from "./Utility/placeholders"; // Adjust the path as needed
 import "bootstrap/dist/css/bootstrap.min.css";
+import TemplateLayout from "./TemplateLayout";
 
 const { Option } = Select;
 
 export default function PreviewTemplate({ temp }) {
+  const [internet, setinternet] = useState(true);
   const [content, setContent] = useState("");
   const [redirect, setRedirect] = useState(false);
   const [inputValues, setInputValues] = useState({});
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   const [selectedTemplate, setSelectedTemplate] = useState("");
-
+  // const [online,setonline]=useEffect('')
   console.log("Preview temp", temp);
   console.log("This is user data", user);
-
+  const navigate = useNavigate();
   useEffect(() => {
     if (temp) {
       getTemplate();
     }
-  }, [temp]);
+  }, [temp, internet]);
 
   useEffect(() => {
     if (temp) {
       handleTemplateChange(temp);
     }
-  }, [temp]);
+  }, [temp, internet]);
 
   const getTemplate = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/templates/templates/name/${temp}`
+        `/templates/templates/name/${temp}`
       );
       setContent(res.data.template.descriptions);
       console.log("Template fetched", res.data.template);
     } catch (error) {
       console.error("Failed to fetch template:", error);
+      if (error) {
+        setinternet(false);
+      }
     }
   };
+
   const userId = JSON.parse(localStorage.getItem("user"));
+
+  const retryFailedPost = async () => {
+    const failedPost = JSON.parse(localStorage.getItem("failedPost"));
+    if (failedPost) {
+      try {
+        const response = await axios.post("/api/Createposts", failedPost);
+        if (response.status === 201) {
+          localStorage.removeItem("failedPost");
+          console.log("Successfully sent failed post.");
+
+          navigate("/user/userhistory");
+        }
+      } catch (error) {
+        console.error("Failed to resend post:", error);
+        if (error) {
+          setinternet(false);
+        }
+      }
+    }
+  };
+
   const createNewPost = async (ev) => {
     ev.preventDefault();
+    const postData = {
+      description: content,
+      Name: temp,
+      userId: userId._id,
+    };
+
+    console.log("isOnline net", internet);
+    if (internet === false) {
+      localStorage.setItem("failedPost", JSON.stringify(postData));
+      alert(
+        "You are offline. The post will be saved and sent once you're back online."
+      );
+      return;
+    }
 
     try {
-      const response = await axios.post("/api/Createposts", {
-        description: content,
-        Name: temp,
-        userId: userId._id,
-      });
-
+      const response = await axios.post("/api/Createposts", postData);
       if (response.status === 201) {
         setRedirect(true);
       }
     } catch (error) {
-      if (error.response) {
-        console.error("Failed to create post:", error.response.data);
-      } else if (error.request) {
-        console.error("No response received:", error.request);
-      } else {
-        console.error("Error setting up request:", error.message);
+      console.error("Failed to create post:", error);
+      if (error) {
+        setinternet(false);
       }
+      // Handle specific errors (e.g., network error, server error)
     }
   };
-
   const handleInputChange = (placeholder) => (e) => {
     setInputValues((prevValues) => ({
       ...prevValues,
@@ -98,6 +131,7 @@ export default function PreviewTemplate({ temp }) {
 
   return (
     <>
+      <TemplateLayout />
       <div className="container mt-1">
         <div className="row">
           {selectedTemplate &&
@@ -135,6 +169,9 @@ export default function PreviewTemplate({ temp }) {
           createNewPost={createNewPost}
         />
         <button className="btn btn-primary mt-2">Create post</button>
+        <button className="btn btn-primary mt-2" onClick={retryFailedPost}>
+          Sync
+        </button>
       </form>
     </>
   );

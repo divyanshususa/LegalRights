@@ -23,34 +23,33 @@ const SignIn = () => {
   const onFinish = async (values) => {
     setLoading(true);
     try {
-        console.log("here1 ");
-      const response = await fetch("http://localhost:5000/login/auth", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(signindata),
-      });
-      console.log("here2  ",signindata);
+      console.log("here1 ");
+      const response = await fetch(
+        "https://legalrights-1.onrender.com/login/auth",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(signindata),
+        }
+      );
+      console.log("here2  ", signindata);
       if (!response.ok) {
         throw new Error("Failed to authenticate");
       }
       const data = await response.json();
-      console.log("here2 ")
-      console.log(data.token , data.role, data.user)
+      console.log("here2 ");
+      console.log(data.token, data.role, data.user);
       // Assuming the JWT token is in the response data
       localStorage.setItem("token", data.token); // Store token in localStorage
       localStorage.setItem("user", JSON.stringify(data.user)); // Store token in localStorage
       // Navigate to /user on successful login
       if (data.role === "admin") {
-          navigate("/admin");
-      
+        navigate("/admin");
+      } else {
+        navigate("/user");
       }
-      else {
-          navigate("/user");
-      }
-    
-      
     } catch (error) {
       console.error("Authentication error:", error);
     } finally {

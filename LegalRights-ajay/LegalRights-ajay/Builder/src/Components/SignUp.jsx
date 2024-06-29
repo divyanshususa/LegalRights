@@ -4,7 +4,7 @@ import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { AiOutlineUser } from "react-icons/ai";
 import { useNavigate } from "react-router-dom"; 
 import "./SignUpForm.css";
-import axios from "axios";
+import axios from "../Service/axios";
 
 
 const { Option } = Select;
@@ -51,7 +51,7 @@ const SignUp = () => {
     try {
       console.log("here 51")
       const response = await axios.post(
-        "http://localhost:5000/user/register",
+        "/user/register",
         userData
       );
       if (response.status === 201) {

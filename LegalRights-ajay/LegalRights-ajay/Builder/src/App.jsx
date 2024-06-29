@@ -1,19 +1,14 @@
-import { useState } from 'react'
-import Routing from './Routing'
+import { useState } from "react";
+import Routing from "./Routing";
 
 function App() {
-  
-
   return (
     <>
       <div>
-        
-        <Routing/>
-       
+        <Routing />
       </div>
-     
     </>
-  )
+  );
 }
 
-export default App
+export default App;

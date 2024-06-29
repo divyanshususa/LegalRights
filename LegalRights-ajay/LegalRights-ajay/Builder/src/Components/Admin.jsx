@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Table, Input, Modal, Button, List, Pagination } from "antd";
-import axios from "axios";
+import axios from "../Service/axios";
 import { useNavigate } from "react-router-dom";
 
 const UserTable = () => {
@@ -18,19 +18,16 @@ const UserTable = () => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const userResponse = await axios.get("http://localhost:5000/user", {
+      const userResponse = await axios.get("/user", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      const postResponse = await axios.get(
-        "http://localhost:5000/api/GetAllposts",
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
+      const postResponse = await axios.get("/api/GetAllposts", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
 
       setUsers(userResponse.data.users);
       setPosts(postResponse.data.posts);

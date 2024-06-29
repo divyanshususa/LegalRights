@@ -40,7 +40,7 @@ const Home = ({ temp }) => {
     setLoading(true);
     try {
       await axios.post(
-        "http://localhost:5000/api/sale-main-documents",
+        "https://legalrights-1.onrender.com/api/sale-main-documents",
         formData
       );
       console.log("Data posted successfully!");
@@ -55,7 +55,6 @@ const Home = ({ temp }) => {
       setLoading(false);
     }
   };
-
 
   const [temps, settemp] = useState("");
 
