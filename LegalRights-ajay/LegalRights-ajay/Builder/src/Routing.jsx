@@ -33,31 +33,37 @@ export default function Routing() {
     setSelectedTemplate(temp);
   }
 
-  
+
   function tempreturn(temp) {
     return temp;
   }
 
 
   function updatetemp(temp) {
-   setSelectedTemplate(temp)
+    setSelectedTemplate(temp)
 
   }
 
   const [SelectedTemplate, setSelectedTemplate] = useState(temp);
+  const [template, setTemplate] = useState()
+  const [content, setContent] = useState("")
 
   console.log("SelectedTemplate()any ", SelectedTemplate);
 
   const updateTemplate = (updateTemplate) => {
     console.log("updateTemplate", updateTemplate);
     setSelectedTemplate(SelectedTemplate);
+    setTemplate(updateTemplate);
   };
 
-  
+  const updateContent=(details)=>{
+    setContent(details);
+  }
+
 
   return (
     <div>
-      <TemplteProvider value={{ SelectedTemplate, updateTemplate }}>
+      <TemplteProvider value={{ template, updateTemplate, content, updateContent }}>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Signin />} />

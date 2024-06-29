@@ -39,9 +39,9 @@ const TemplateChoose = ({ choosetemp }) => {
         <Option value="TWO PARTIES">TWO PARTIES</Option>
         <Option value="Rent Deed">Rent Deed</Option>
         <Option value="Will">Will</Option>
-        <Option value="VEHICLE SALE AND PURTUESED-5">
+        {/* <Option value="VEHICLE SALE AND PURTUESED-5">
           VEHICLE SALE AND PURTUESED-5
-        </Option>
+        </Option> */}
         <Option value="FAMILY WILL">FAMILY WILL</Option>
         <Option value="Gift Deed">Gift Deed</Option>
         <Option value="VEHICLE SALE AND PURTUESED-5">

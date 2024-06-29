@@ -8,17 +8,19 @@ import { Button, Select } from "antd";
 import { templatePlaceholders } from "./Utility/placeholders"; // Adjust the path as needed
 import "bootstrap/dist/css/bootstrap.min.css";
 import TemplateLayout from "./TemplateLayout";
+import { useTemplate } from "../Hooks/TemplateContext";
 
 const { Option } = Select;
 
 export default function PreviewTemplate({ temp }) {
   const [internet, setinternet] = useState(true);
-  const [content, setContent] = useState("");
+  // const [content, updateContent] = useState("");
   const [redirect, setRedirect] = useState(false);
   const [inputValues, setInputValues] = useState({});
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
-  const [selectedTemplate, setSelectedTemplate] = useState("");
+  // const [template, updateTemplate] = useState("");
   // const [online,setonline]=useEffect('')
+  const { template, content, updateTemplate, updateContent } = useTemplate();
   console.log("Preview temp", temp);
   console.log("This is user data", user);
   const navigate = useNavigate();
@@ -39,7 +41,7 @@ export default function PreviewTemplate({ temp }) {
       const res = await axios.get(
         `/templates/templates/name/${temp}`
       );
-      setContent(res.data.template.descriptions);
+      updateContent(res.data.template.descriptions);
       console.log("Template fetched", res.data.template);
     } catch (error) {
       console.error("Failed to fetch template:", error);
@@ -110,17 +112,17 @@ export default function PreviewTemplate({ temp }) {
 
   const handleReplaceContent = () => {
     let updatedContent = content;
-    const placeholders = templatePlaceholders[selectedTemplate] || [];
+    const placeholders = templatePlaceholders[template] || [];
     for (const placeholder of placeholders) {
       const value = inputValues[placeholder] || placeholder;
       const regex = new RegExp(`\\$\\{\\*\\*${placeholder}\\*\\*\\}`, "g");
       updatedContent = updatedContent.replace(regex, value);
     }
-    setContent(updatedContent);
+    updateContent(updatedContent);
   };
 
   const handleTemplateChange = (temp) => {
-    setSelectedTemplate(temp);
+    updateTemplate(temp);
     setInputValues({});
     // Do not reset content here, it will be replaced when handleReplaceContent is called
   };
@@ -134,8 +136,8 @@ export default function PreviewTemplate({ temp }) {
       <TemplateLayout />
       <div className="container mt-1">
         <div className="row">
-          {selectedTemplate &&
-            templatePlaceholders[selectedTemplate].map((placeholder, index) => (
+          {/* {template &&
+            templatePlaceholders[template].map((placeholder, index) => (
               <div className="col-md-3 mb-2" key={index}>
                 <div className="form-group">
                   <label className="form-label font-weight-bold">
@@ -150,22 +152,22 @@ export default function PreviewTemplate({ temp }) {
                   />
                 </div>
               </div>
-            ))}
+            ))} */}
         </div>
 
-        <Button
+        {/* <Button
           type="primary"
           className="template-choose-button mb-3"
           onClick={handleReplaceContent}
-          disabled={!selectedTemplate}
+          disabled={!template}
         >
           Replace Content
-        </Button>
+        </Button> */}
       </div>
       <form onSubmit={createNewPost}>
         <Editor
           value={content}
-          onChange={setContent}
+          onChange={updateContent}
           createNewPost={createNewPost}
         />
         <button className="btn btn-primary mt-2">Create post</button>

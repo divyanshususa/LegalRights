@@ -6,12 +6,17 @@ import { TableModule } from "quill-table";
 
 // Extend the font size options
 const Font = Quill.import("formats/font");
-Font.whitelist = ["rockwell", "sans-serif"];
+Font.whitelist = ["Rockwell", "sans-serif"];
 Quill.register(Font, true);
 
+const fontSizeArr = ['8px','9px','10px','12px']
+  // ,'12px','14px','16px','20px','24px','32px','42px','54px','68px','84px','98px'];
 const Size = Quill.import("attributors/style/size");
-Size.whitelist = ["14px", "11px"];
+Size.whitelist = fontSizeArr;
 Quill.register(Size, true);
+let toolbarOptions = [
+    [{ 'size': fontSizeArr,'name':"font-size" }],
+];
 
 export default function Editor({ value, onChange }) {
   useEffect(() => {
@@ -19,8 +24,14 @@ export default function Editor({ value, onChange }) {
     FontStyle.whitelist = ["rockwell", "sans-serif"];
     Quill.register(FontStyle, true);
 
+    
+
+// let Size = Quill.import('attributors/style/size');
+// Size.whitelist = fontSizeArr;
+// Quill.register(Size, true);
+
     // Add custom font-family to editor
-    const fonts = ["rockwell", "sans-serif"];
+    const fonts = ["Rockwell", "sans-serif"];
     const fontStyles = fonts
       .map(
         (font) => `
@@ -44,7 +55,8 @@ export default function Editor({ value, onChange }) {
   const modules = {
     toolbar: [
       [{ font: [] }], // Add font dropdown
-      [{ size: ["14px", "11px"] }], // Add custom font sizes
+      // [{ size: ["14px", "11px"] }], // Add custom font sizes
+      ...toolbarOptions,
       [{ header: [1, 2, false] }],
       ["bold", "italic", "underline", "strike", "blockquote"],
       [
