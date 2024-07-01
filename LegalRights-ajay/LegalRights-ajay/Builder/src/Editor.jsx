@@ -6,11 +6,11 @@ import { TableModule } from "quill-table";
 
 // Extend the font size options
 const Font = Quill.import("formats/font");
-Font.whitelist = ["rockwell", "sans-serif"];
+Font.whitelist = ["Rockwell", "sans-serif"];
 Quill.register(Font, true);
 
 const Size = Quill.import("attributors/style/size");
-Size.whitelist = ["14px", "11px"];
+Size.whitelist = ["12px", "11px"];
 Quill.register(Size, true);
 
 export default function Editor({ value, onChange }) {

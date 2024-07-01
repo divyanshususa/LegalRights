@@ -1,55 +1,75 @@
-import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import React from "react";
 
-export default function PropertDetails() {
-  const [circleRate, setCircleRate] = useState(0);
-  const [amount, setAmount] = useState(0);
-
-  // Add your calculation logic here
-
+const PropertyDetails = () => {
   return (
-    <div>
-      <h2>PropertDetails</h2>
-      <Form>
-        <Form.Group controlId="circleRate">
-          <Form.Label></Form.Label>
+    <form>
+      <div className="form-group">
+        <strong htmlFor="propertyValuation">Search Your Locality</strong>
+        <select
+          className="form-control"
+          id="propertyValuation"
+          name="propertyValuation"
+        >
+          <option value="">--select--</option>
+          <option value="">Kashmere Gate</option>
 
-          <Form.Group controlId="fee">
-            <Form.Label>
-              <b>Search Your Locality</b>
-            </Form.Label>
-            <Form.Control as="select">
-              <option value="Kashmere Gate">Kashmere Gate</option>
-              {/* Add other party categories */}
-            </Form.Control>
-          </Form.Group>
+          {/* Add more options here */}
+        </select>
+      </div>
+      <div className="form-group">
+        <strong htmlFor="district">District</strong>
+        <select className="form-control" id="district" name="district">
+          <option value="">--select--</option>
+          <option value="">Central</option>
+          {/* Add more options here */}
+        </select>
+      </div>
 
+      <div className="form-group">
+        <strong htmlFor="district">Sub-Division *</strong>
+        <select className="form-control" id="district" name="district">
+          <option value="">--select--</option>
+          <option value="">Kashmere Gate</option>
 
-          
-          <Form.Label>Circle Rate</Form.Label>
-          <Form.Control
-            type="number"
-            value={circleRate}
-            onChange={(e) => setCircleRate(Number(e.target.value))}
-          />
-        </Form.Group>
+          {/* Add more options here */}
+        </select>
+      </div>
 
-        <Form.Group controlId="amount">
-          <Form.Label>Amount</Form.Label>
-          <Form.Control
-            type="number"
-            value={amount}
-            onChange={(e) => setAmount(Number(e.target.value))}
-          />
-        </Form.Group>
+      <div className="form-group">
+        <strong htmlFor="district">Area/Locality *</strong>
+        <select className="form-control" id="district" name="district">
+          <option value="">--select--</option>
+          <option value="">Kashmere Gate</option>
 
-        {/* Add other input fields and calculation results */}
-        {/* For example, display the calculated stamp duty */}
+          {/* Add more options here */}
+        </select>
+      </div>
 
-        <Button variant="primary" type="submit">
-          Calculate
-        </Button>
-      </Form>
-    </div>
+      <div className="form-group">
+        <strong htmlFor="district">Area Type *</strong>
+        <select className="form-control" id="district" name="district">
+          <option value="">--select--</option>
+          <option value="">Urban</option>
+
+          {/* Add more options here */}
+        </select>
+      </div>
+
+      <div className="form-group">
+        <strong htmlFor="district">Local Governing Body</strong>
+        <select className="form-control" id="district" name="district">
+          <option value="">--select--</option>
+          <option value="">MCD/NDMC</option>
+
+          {/* Add more options here */}
+        </select>
+      </div>
+
+      <button type="submit" className="btn btn-primary">
+        Search
+      </button>
+    </form>
   );
-}
+};
+
+export default PropertyDetails;

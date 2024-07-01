@@ -22,12 +22,12 @@ const TemplateLayout = () => {
           {/* <General />
           <Party/> */}
         </section>
-        <Button type="primary" className="btn btn-primary">
+        {/* <Button type="primary" className="btn btn-primary">
           Data Submission
         </Button>
         <Button type="btn btn-danger" className="btn">
           cancel
-        </Button>
+        </Button> */}
       </div>
     </div>
   );
