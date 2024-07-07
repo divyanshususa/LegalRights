@@ -18,7 +18,8 @@ import Ledger from "./DataEntry/Ledger";
 import LedgerEntry from "./DataEntry/LedgerEntry";
 import TemplateAdd from "./Components/TemplateAdd";
 import Witness from "./Components/TemplateLayout";
-import Party from "./TemplateHeader/Party";
+import Party1 from "./TemplateHeader/Party1";
+import Party2 from "./TemplateHeader/Party2";
 import General from "./TemplateHeader/General";
 import { TemplteContext, TemplteProvider } from "./Hooks/TemplateContext";
 
@@ -84,7 +85,8 @@ export default function Routing() {
               <Route path="ledgerentry" element={<LedgerEntry />} />
               <Route path="witness" element={<Witness />} />
               <Route path="dataentry" element={<DataEntry />} />
-              <Route path="party" element={<Party />} />
+              <Route path="party1" element={<Party1 />} />
+              <Route path="party2" element={<Party2 />} />
               <Route path="general" element={<General />} />
             </Route>
           </Routes>
