@@ -11,4 +11,6 @@ router.get("/get-detail-group", dataentrycontroller.getalldetailgroup);
 router.get("/get-ledger-entry", dataentrycontroller.getallledgerentry);
 router.patch("/update-status/:id", dataentrycontroller.changestatusofentry);
 
+router.patch("/:id", dataentrycontroller.updateDetailGroup);
+
 module.exports = router;

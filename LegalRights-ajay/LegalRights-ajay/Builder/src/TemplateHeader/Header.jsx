@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { Button } from "antd"; // Import Button component from Ant Design
 import Party1 from "./Party1";
-import Party2 from "./Party2";
+import Amount from "./FeePayment";
 import General from "./General";
 import Witness from "./Witness";
 import PropertDetails from "./PropertDetails";
 import { SearchOutlined } from "@ant-design/icons";
-import {  Divider, Flex, Radio, Space, Tooltip } from "antd";
-
+import { Divider, Flex, Radio, Space, Tooltip } from "antd";
 
 function Header() {
   const [clicked, setClicked] = useState("General");
@@ -25,28 +24,24 @@ function Header() {
               type="primary"
               className="btn btn-arrow-right"
               onClick={() => handleClick("General")}
-              
             >
               A - General Information
-          </Button>
-            
-
+            </Button>
 
             <Button
               type="primary"
               className="btn btn-arrow-right"
               onClick={() => handleClick("Party1")}
             >
-              B - Party 1
+              B - Party 
             </Button>
-            
 
             <Button
               type="primary"
               className="btn btn-arrow-right"
-              onClick={() => handleClick("Party2")}
+              onClick={() => handleClick("Amount")}
             >
-              C - Party 2
+              Fee Payment
             </Button>
             <Button
               type="primary"
@@ -67,7 +62,7 @@ function Header() {
       </div>
       {clicked === "General" && <General />}
       {clicked === "Party1" && <Party1 />}
-      {clicked === "Party2" && <Party2 />}
+      {clicked === "Amount" && <Amount />}
       {clicked === "Witness" && <Witness />}
       {clicked === "PropertDetails" && <PropertDetails />}
     </div>

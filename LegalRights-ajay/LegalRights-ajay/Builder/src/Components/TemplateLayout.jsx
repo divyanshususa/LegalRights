@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import Header from "../TemplateHeader/Header";
 import General from "../TemplateHeader/General";
 import Party1 from "../TemplateHeader/Party1";
-import Party2 from "../TemplateHeader/Party2";
 
 const TemplateLayout = () => {
   const param = useParams();

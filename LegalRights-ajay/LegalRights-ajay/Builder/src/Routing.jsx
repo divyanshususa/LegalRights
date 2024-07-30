@@ -19,9 +19,9 @@ import LedgerEntry from "./DataEntry/LedgerEntry";
 import TemplateAdd from "./Components/TemplateAdd";
 import Witness from "./Components/TemplateLayout";
 import Party1 from "./TemplateHeader/Party1";
-import Party2 from "./TemplateHeader/Party2";
 import General from "./TemplateHeader/General";
 import { TemplteContext, TemplteProvider } from "./Hooks/TemplateContext";
+import FeePayment from "./TemplateHeader/FeePayment";
 
 export default function Routing() {
   const a = "1";
@@ -68,7 +68,6 @@ export default function Routing() {
             <Route path="/" element={<Signin />} />
             <Route path="/temp" element={<DocumentPreview />} />
             <Route path="/tempadd" element={<TemplateAdd />} />
-            <Route path="/admin" element={<Admin />} />
 
             <Route path="/signup" element={<SignUp />} />
             {/* <Route path="/user/part/partys" element={<Party />} /> */}
@@ -79,6 +78,7 @@ export default function Routing() {
             <Route path="/user" element={<MainLayout />}>
               <Route index element={<Home temp={temp} />} />
               <Route path="userhistory" element={<UserHistory />} />
+              <Route path="admin" element={<Admin />} />
               {/* <Route path="dailyLedger" element={<DailyLeger />} /> */}
               <Route path="dailyLedger" element={<Ledger />} />
               <Route path="documentdetail" element={<DocumentDetail />} />
@@ -86,7 +86,7 @@ export default function Routing() {
               <Route path="witness" element={<Witness />} />
               <Route path="dataentry" element={<DataEntry />} />
               <Route path="party1" element={<Party1 />} />
-              <Route path="party2" element={<Party2 />} />
+              <Route path="feepayment" element={<FeePayment />} />
               <Route path="general" element={<General />} />
             </Route>
           </Routes>

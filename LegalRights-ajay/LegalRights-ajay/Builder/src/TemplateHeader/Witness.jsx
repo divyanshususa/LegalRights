@@ -30,15 +30,20 @@ export default function Witness() {
           />
         </Form.Group>
 
-        <Form.Group controlId="identificationType">
+        <Form.Group controlId="address">
+          <strong>Address</strong>
+          <Form.Control type="text" placeholder="Enter address" />
+        </Form.Group>
+
+        {/* <Form.Group controlId="identificationType">
           <strong>Identification Type</strong>
           <Form.Control as="select">
             <option value="">--Select--</option>
             <option value="">AdharNumber</option>
             <option value="">PANNo.</option>
             {/* Add other identification types */}
-          </Form.Control>
-        </Form.Group>
+        {/* </Form.Control>
+        </Form.Group> */}
 
         <Form.Group controlId="identificationDescription">
           <strong>Identification Description</strong>
@@ -46,11 +51,6 @@ export default function Witness() {
             type="text"
             placeholder="Enter identification description"
           />
-        </Form.Group>
-
-        <Form.Group controlId="address">
-          <strong>Address</strong>
-          <Form.Control type="text" placeholder="Enter address" />
         </Form.Group>
 
         <Button variant="primary" type="submit">

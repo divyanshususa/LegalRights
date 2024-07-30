@@ -113,6 +113,10 @@ const UserTable = () => {
           color: "black",
           backgroundColor: "Highlight",
           fontFamily: "monospace bold",
+          borderRadius: "10px",
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent:"center",
         }}
         onClick={() => {
           navigate("/");

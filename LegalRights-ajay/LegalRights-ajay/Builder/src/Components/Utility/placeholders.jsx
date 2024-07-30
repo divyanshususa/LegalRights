@@ -10,6 +10,7 @@ export const templatePlaceholders = {
     "Total Flat Area in Sq.Mtrs.",
     "Number of Floors",
     "Lift provided or not",
+    "Amount",
     "Year of Construction",
     "Age Factor",
     "Type of Colony",

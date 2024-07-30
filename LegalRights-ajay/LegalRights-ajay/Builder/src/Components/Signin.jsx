@@ -46,7 +46,7 @@ const SignIn = () => {
       localStorage.setItem("user", JSON.stringify(data.user)); // Store token in localStorage
       // Navigate to /user on successful login
       if (data.role === "admin") {
-        navigate("/admin");
+        navigate("/user");
       } else {
         navigate("/user");
       }

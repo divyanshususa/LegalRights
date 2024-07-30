@@ -17,6 +17,7 @@ export default function Party1() {
             <strong>Party Type</strong>
             <Form.Control as="select">
               <option value="Vendor">Vendor</option>
+              <option value="Vendor">Vendee</option>
             </Form.Control>
           </Form.Group>
 
@@ -94,18 +95,4 @@ export default function Party1() {
   );
 }
 
-// <Form.Group controlId="identificationType">
-//   <strong>Identification Type</strong>
-//   <Form.Control as="select">
-//     <option value="">--Select--</option>
-//     {/* Add other identification types */}
-//   </Form.Control>
-// </Form.Group>
 
-// <Form.Group controlId="identificationType">
-//   <strong>Identification Number :- </strong>
-//   <Form.Control as="select">
-//     <option value="">--Select--</option>
-//     {/* Add other identification types */}
-//   </Form.Control>
-// </Form.Group>

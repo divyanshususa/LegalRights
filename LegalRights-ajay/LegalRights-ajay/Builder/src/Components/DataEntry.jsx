@@ -29,14 +29,14 @@ export default function DataEntry() {
           >
             DETAIL GROUP
           </li>
-          <li
+          {/* <li
             className="list-group-item clickable-item"
             onClick={() => {
               navigate("/user/ledgerentry");
             }}
           >
             Ledger Entry
-          </li>
+          </li> */}
         </ul>
       </div>
     </div>
