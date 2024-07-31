@@ -33,7 +33,7 @@ function Header() {
               className="btn btn-arrow-right"
               onClick={() => handleClick("Party1")}
             >
-              B - Party 
+              B - Party
             </Button>
 
             <Button
@@ -56,6 +56,20 @@ function Header() {
               onClick={() => handleClick("PropertDetails")}
             >
               E - PropertDetails
+            </Button>
+            <Button
+              type="primary"
+              className="btn btn-arrow-right"
+              onClick={() => handleClick("PropertDetails")}
+            >
+              E - Seller
+            </Button>
+            <Button
+              type="primary"
+              className="btn btn-arrow-right"
+              onClick={() => handleClick("PropertDetails")}
+            >
+              E - Buyer
             </Button>
           </div>
         </div>
