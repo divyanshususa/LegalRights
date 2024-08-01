@@ -37,32 +37,56 @@ const MainLayout = () => {
     navigate("/");
   };
 
+const user = JSON.parse(localStorage.getItem("user"));
+console.log("user role", user.role);
   return (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
-          <Menu.Item
-            key="dashboard"
-            icon={<RxDashboard />}
-            onClick={() => navigate("/user")}
-          >
-            DashBoard
-          </Menu.Item>
+          {user.role === "user" && (
+            <>
+              <Menu.Item
+                key="dashboard"
+                icon={<RxDashboard />}
+                onClick={() => navigate("/user")}
+              >
+                DashBoard
+              </Menu.Item>
 
-          <Menu.Item
-            key="dataentry"
-            icon={<RxDashboard />}
-            onClick={() => navigate("/user/dataentry")}
-          >
-            DataEntry
-          </Menu.Item>
-          <Menu.Item
-            key="userhistory"
-            icon={<RxDashboard />}
-            onClick={() => navigate("/user/userhistory")}
-          >
-            History
-          </Menu.Item>
+              <Menu.Item
+                key="dataentry"
+                icon={<RxDashboard />}
+                onClick={() => navigate("/user/dataentry")}
+              >
+                DataEntry
+              </Menu.Item>
+              <Menu.Item
+                key="userhistory"
+                icon={<RxDashboard />}
+                onClick={() => navigate("/user/userhistory")}
+              >
+                History
+              </Menu.Item>
+            </>
+          )}
+          {user.role === "admin" && (
+            <>
+              <Menu.Item
+                key="admin"
+                icon={<RxDashboard />}
+                onClick={() => navigate("/user/admin")}
+              >
+                All User details
+              </Menu.Item>
+              <Menu.Item
+                key="dataentry"
+                icon={<RxDashboard />}
+                onClick={() => navigate("/user/ledgerentry")}
+              >
+                Ledger Entry
+              </Menu.Item>
+            </>
+          )}
           <Menu.Item
             key="/"
             icon={<RxDashboard />}

@@ -46,7 +46,8 @@ exports.createDataEntry= async (req, res) => {
 
   exports.getalldetailgroup= async(req,res)=>{
     try {
-        const entries = await DetailGroup.find()
+      const entries = await DetailGroup.find()
+      
         console.log(entries)
         res.json(entries)
     } catch (error) {
@@ -68,7 +69,13 @@ exports.createDataEntry= async (req, res) => {
     const { id } = req.params;
     const updates = req.body;
   
-    const allowedUpdates = ['eStamp', 'eRegFee', 'dCheck', 'finalPrint'];
+    const allowedUpdates = [
+      "eStamp",
+      "eRegFee",
+      "dCheck",
+      "finalPrint",
+      "Status",
+    ];
     const isValidUpdate = Object.keys(updates).every(update => allowedUpdates.includes(update));
   
     if (!isValidUpdate) {
@@ -85,3 +92,43 @@ exports.createDataEntry= async (req, res) => {
       res.status(400).send(error);
     }
   }
+
+  // controllers/DetailGroupController.js
+exports.updateDetailGroup = async (req, res) => {
+  const { id } = req.params;
+  const updates = req.body;
+
+  const allowedUpdates = [
+    "serialNo",
+    "document",
+    "propNo",
+    "partyDealer",
+    "eStamp",
+    "eRegFee",
+    "ngdrsNo",
+    "appDate",
+    "dCheck",
+    "finalPrint",
+    "Status",
+  ];
+  const isValidUpdate = Object.keys(updates).every((update) =>
+    allowedUpdates.includes(update)
+  );
+
+  if (!isValidUpdate) {
+    return res.status(400).send({ error: "Invalid updates!" });
+  }
+
+  try {
+    const entry = await DetailGroup.findByIdAndUpdate(id, updates, {
+      new: true,
+      runValidators: true,
+    });
+    if (!entry) {
+      return res.status(404).send();
+    }
+    res.send(entry);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};

@@ -1,0 +1,25 @@
+.property-details-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh; /* Full height viewport */
+  background-color: #f9f9f9; /* Light background color */
+}
+
+.property-details-input {
+  width: 40%; /* Responsive width */
+  max-width: 600px; /* Maximum width */
+  height: 200px; /* Fixed height for the textarea */
+  padding: 15px; /* Padding inside the textarea */
+  font-size: 16px; /* Font size */
+  border: 1px solid #ccc; /* Light grey border */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  resize: vertical; /* Allow vertical resizing */
+}
+
+.property-details-input:focus {
+  border-color: #66afe9; /* Border color on focus */
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 8px rgba(102, 175, 233, 0.6); /* Blue shadow on focus */
+}

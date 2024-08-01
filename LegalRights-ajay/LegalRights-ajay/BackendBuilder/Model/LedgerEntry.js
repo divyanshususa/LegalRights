@@ -1,16 +1,15 @@
 const mongoose = require('mongoose');
 
 const LedgerEntrySchema = new mongoose.Schema({
- date: { type: Date, required: true },
-  phoneNumber: { type: String, required: true },
-  credit: { type: Number, required: true },
-  balance: { type: Number, required: true },
-  entries: [{ 
-    description: { type: String, required: true },
-    debit: { type: Number, required: true },
-    balance: { type: Number, required: true },
-    sNo: { type: Number, required: true }
-  }]
+  Sno_Credit: { type: Number, required: true },
+  date_Credit: { type: Date, required: true },
+  phoneNumber_Credit: { type: String, required: true },
+  credit_Credit: { type: Number, required: true },
+  balance_Credit: { type: Number, required: true },
+  date_debit: { type: Date, required: true },
+  debit_debit: { type: Number, required: true },
+  balance_debit: { type: Number, required: true },
+  Sno_debit: { type: Number, required: true },
 });
 
 

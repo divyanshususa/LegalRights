@@ -12,7 +12,7 @@ Quill.register(Font, true);
 const fontSizeArr = ['8px','9px','10px','12px']
   // ,'12px','14px','16px','20px','24px','32px','42px','54px','68px','84px','98px'];
 const Size = Quill.import("attributors/style/size");
-Size.whitelist = fontSizeArr;
+Size.whitelist = ["12px", "11px"];
 Quill.register(Size, true);
 let toolbarOptions = [
     [{ 'size': fontSizeArr,'name':"font-size" }],
@@ -83,3 +83,4 @@ export default function Editor({ value, onChange }) {
     </div>
   );
 }
+ 

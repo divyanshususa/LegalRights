@@ -3,7 +3,7 @@ import { Button } from "antd"; // Import Button component from Ant Design
 import { useParams } from "react-router-dom";
 import Header from "../TemplateHeader/Header";
 import General from "../TemplateHeader/General";
-import Party from "../TemplateHeader/Party";
+import Party1 from "../TemplateHeader/Party1";
 
 const TemplateLayout = () => {
   const param = useParams();
@@ -22,12 +22,12 @@ const TemplateLayout = () => {
           {/* <General />
           <Party/> */}
         </section>
-        <Button type="primary" className="btn btn-primary">
+        {/* <Button type="primary" className="btn btn-primary">
           Data Submission
         </Button>
         <Button type="btn btn-danger" className="btn">
           cancel
-        </Button>
+        </Button> */}
       </div>
     </div>
   );

@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { Button } from "antd"; // Import Button component from Ant Design
-import Party from "./Party";
+import Party1 from "./Party1";
+import Amount from "./FeePayment";
 import General from "./General";
 import Witness from "./Witness";
 import PropertDetails from "./PropertDetails";
+import { SearchOutlined } from "@ant-design/icons";
+import { Divider, Flex, Radio, Space, Tooltip } from "antd";
 
 function Header() {
   const [clicked, setClicked] = useState("General");
@@ -28,29 +31,52 @@ function Header() {
             <Button
               type="primary"
               className="btn btn-arrow-right"
-              onClick={() => handleClick("Party")}
+              onClick={() => handleClick("Party1")}
             >
               B - Party
+            </Button>
+
+            <Button
+              type="primary"
+              className="btn btn-arrow-right"
+              onClick={() => handleClick("Amount")}
+            >
+              Fee Payment
             </Button>
             <Button
               type="primary"
               className="btn btn-arrow-right"
               onClick={() => handleClick("Witness")}
             >
-              C - Witness
+              D - Witness
             </Button>
             <Button
               type="primary"
               className="btn btn-arrow-right"
               onClick={() => handleClick("PropertDetails")}
             >
-              PropertDetails
+              E - PropertDetails
+            </Button>
+            <Button
+              type="primary"
+              className="btn btn-arrow-right"
+              onClick={() => handleClick("PropertDetails")}
+            >
+              E - Seller
+            </Button>
+            <Button
+              type="primary"
+              className="btn btn-arrow-right"
+              onClick={() => handleClick("PropertDetails")}
+            >
+              E - Buyer
             </Button>
           </div>
         </div>
       </div>
       {clicked === "General" && <General />}
-      {clicked === "Party" && <Party />}
+      {clicked === "Party1" && <Party1 />}
+      {clicked === "Amount" && <Amount />}
       {clicked === "Witness" && <Witness />}
       {clicked === "PropertDetails" && <PropertDetails />}
     </div>

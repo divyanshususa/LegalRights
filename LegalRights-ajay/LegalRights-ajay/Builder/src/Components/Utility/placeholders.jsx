@@ -4,17 +4,21 @@ export const templatePlaceholders = {
   "Sale Deed": [
     "Name of Colony",
     "Category of Colony",
+    "Category",
     "Type of Property",
     "Minimum Rate of Land Notified by Govt. per Sq.Mtrs.",
     "Cost of Construction notified by Government in Sq.Mtrs.",
     "Total Flat Area in Sq.Mtrs.",
+    "Land Share Under Transfer in sq mtrs ",
     "Number of Floors",
-    "Lift provided or not",
-    "Year of Construction",
-    "Age Factor",
-    "Type of Colony",
-    "Status of Building",
-    "Use Factor",
+    "Total plinth Area/Far in sq.Mtrs",
+    "Plinth Area under Transfer",
+    "Amount",
+    // "Year of Construction",
+    // "Age Factor",
+    // "Type of Colony",
+    // "Status of Building",
+    "useFactor",
   ],
   "Gift Deed": [
     "Name of Colony",
@@ -55,9 +59,17 @@ export const templatePlaceholders = {
     "Use Factor",
     "Location / Land Mark",
   ],
-  "BAYANA SAMPLE FINAL": [],
-  "Will": [],
+  "BAYANA SAMPLE FINAL": [
+    "Date",
+  
+
+    "Total Amount",
+    "Ernst Amount",
+    "Balance Payment"
+
+  ],
+  Will: [],
   "FAMILY WILL": [],
-  "Rent Deed":[],
+  "Rent Deed": [],
   "VEHICLE SALE AND PURTUESED-5": [],
 };

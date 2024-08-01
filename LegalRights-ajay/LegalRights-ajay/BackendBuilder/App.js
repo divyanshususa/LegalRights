@@ -25,7 +25,7 @@ const corsOptions = {
 app.use(cors());
 
 // Database connection
-connectDB()
+connectDB() 
   .then(() => {
     console.log("Connected to MongoDB Atlas");
   })

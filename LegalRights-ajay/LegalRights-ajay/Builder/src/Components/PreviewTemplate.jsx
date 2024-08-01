@@ -38,9 +38,7 @@ export default function PreviewTemplate({ temp }) {
 
   const getTemplate = async () => {
     try {
-      const res = await axios.get(
-        `/templates/templates/name/${temp}`
-      );
+      const res = await axios.get(`/templates/templates/name/${temp}`);
       updateContent(res.data.template.descriptions);
       console.log("Template fetched", res.data.template);
     } catch (error) {

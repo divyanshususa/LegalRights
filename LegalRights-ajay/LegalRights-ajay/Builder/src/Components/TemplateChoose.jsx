@@ -8,9 +8,9 @@ import { useTemplate } from "../Hooks/TemplateContext";
 const { Option } = Select;
 
 const TemplateChoose = ({ choosetemp }) => {
-  const [selectedTemplate, setSelectedTemplate] = useState(null);
+  const [SelectedTemplate, setSelectedTemplate] = useState(null);
 
-  choosetemp(selectedTemplate);
+  choosetemp(SelectedTemplate);
   const { updateTemplate } = useTemplate();
 
 
@@ -33,7 +33,7 @@ const TemplateChoose = ({ choosetemp }) => {
         style={{ width: 300, marginBottom: 16 }}
         placeholder="Select a template"
         onChange={handleTemplateSelect}
-        value={selectedTemplate}
+        value={SelectedTemplate}
       >
         <Option value="Sale Deed">Sale Deed</Option>
         <Option value="TWO PARTIES">TWO PARTIES</Option>

@@ -18,9 +18,10 @@ import Ledger from "./DataEntry/Ledger";
 import LedgerEntry from "./DataEntry/LedgerEntry";
 import TemplateAdd from "./Components/TemplateAdd";
 import Witness from "./Components/TemplateLayout";
-import Party from "./TemplateHeader/Party";
+import Party1 from "./TemplateHeader/Party1";
 import General from "./TemplateHeader/General";
 import { TemplteContext, TemplteProvider } from "./Hooks/TemplateContext";
+import FeePayment from "./TemplateHeader/FeePayment";
 
 export default function Routing() {
   const a = "1";
@@ -33,20 +34,17 @@ export default function Routing() {
     setSelectedTemplate(temp);
   }
 
-
   function tempreturn(temp) {
     return temp;
   }
 
-
   function updatetemp(temp) {
-    setSelectedTemplate(temp)
-
+    setSelectedTemplate(temp);
   }
 
   const [SelectedTemplate, setSelectedTemplate] = useState(temp);
-  const [template, setTemplate] = useState()
-  const [content, setContent] = useState("")
+  const [template, setTemplate] = useState();
+  const [content, setContent] = useState("");
 
   console.log("SelectedTemplate()any ", SelectedTemplate);
 
@@ -56,20 +54,20 @@ export default function Routing() {
     setTemplate(updateTemplate);
   };
 
-  const updateContent=(details)=>{
+  const updateContent = (details) => {
     setContent(details);
-  }
-
+  };
 
   return (
     <div>
-      <TemplteProvider value={{ template, updateTemplate, content, updateContent }}>
+      <TemplteProvider
+        value={{ template, updateTemplate, content, updateContent }}
+      >
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Signin />} />
             <Route path="/temp" element={<DocumentPreview />} />
             <Route path="/tempadd" element={<TemplateAdd />} />
-            <Route path="/admin" element={<Admin />} />
 
             <Route path="/signup" element={<SignUp />} />
             {/* <Route path="/user/part/partys" element={<Party />} /> */}
@@ -80,13 +78,15 @@ export default function Routing() {
             <Route path="/user" element={<MainLayout />}>
               <Route index element={<Home temp={temp} />} />
               <Route path="userhistory" element={<UserHistory />} />
+              <Route path="admin" element={<Admin />} />
               {/* <Route path="dailyLedger" element={<DailyLeger />} /> */}
               <Route path="dailyLedger" element={<Ledger />} />
               <Route path="documentdetail" element={<DocumentDetail />} />
               <Route path="ledgerentry" element={<LedgerEntry />} />
               <Route path="witness" element={<Witness />} />
               <Route path="dataentry" element={<DataEntry />} />
-              <Route path="party" element={<Party />} />
+              <Route path="party1" element={<Party1 />} />
+              <Route path="feepayment" element={<FeePayment />} />
               <Route path="general" element={<General />} />
             </Route>
           </Routes>

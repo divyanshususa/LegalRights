@@ -6,7 +6,6 @@ import moment from "moment";
 const LedgerEntry = () => {
   const [form] = Form.useForm();
   const [dataSource, setDataSource] = useState([]);
-  const [entries, setEntries] = useState([]);
 
   useEffect(() => {
     fetchdata();
@@ -14,9 +13,7 @@ const LedgerEntry = () => {
 
   const fetchdata = async () => {
     try {
-      const res = await axios.get(
-        "/data-entry/get-ledger-entry"
-      );
+      const res = await axios.get("/data-entry/get-ledger-entry");
       console.log(res.data);
       setDataSource(res.data);
     } catch (error) {}
@@ -24,28 +21,23 @@ const LedgerEntry = () => {
 
   const onFinish = (values) => {
     const newEntry = {
-      date: values.date.format("YYYY-MM-DD"),
-      phoneNumber: values.phoneNumber,
-      credit: values.credit,
-      balance: values.balance,
-      entries: entries.map((entry) => ({
-        ...entry,
-        debit: parseFloat(entry.debit),
-        balance: parseFloat(entry.balance),
-        sNo: parseInt(entry.sNo),
-      })),
+      Sno_Credit: values.snoCredit,
+      date_Credit: values.dateCredit.format("YYYY-MM-DD"),
+      phoneNumber_Credit: values.phoneNumberCredit,
+      credit_Credit: values.creditCredit,
+      balance_Credit: values.balanceCredit,
+      date_debit: values.dateDebit.format("YYYY-MM-DD"),
+      debit_debit: values.debitDebit,
+      balance_debit: values.balanceDebit,
+      Sno_debit: values.snoDebit,
     };
 
     axios
-      .post(
-        "/data-entry/create-ledger-entry",
-        newEntry
-      )
+      .post("/data-entry/create-ledger-entry", newEntry)
       .then((response) => {
         message.success("Data saved successfully");
-        //   setDataSource([...dataSource, newEntry]);
+        fetchdata();
         form.resetFields();
-        setEntries([]);
       })
       .catch((error) => {
         message.error("Failed to save data");
@@ -53,41 +45,74 @@ const LedgerEntry = () => {
   };
 
   const addEntry = () => {
-    setEntries([
-      ...entries,
-      { description: "", debit: 0, balance: 0, sNo: entries.length + 1 },
-    ]);
+    form.setFieldsValue({
+      entries: [
+        ...form.getFieldsValue().entries,
+        {
+          description: "",
+          debit: 0,
+          balance: 0,
+          sNo: form.getFieldsValue().entries.length + 1,
+        },
+      ],
+    });
   };
 
   const handleEntryChange = (index, field, value) => {
-    const updatedEntries = [...entries];
-    updatedEntries[index][field] = value;
-    setEntries(updatedEntries);
+    form.setFieldsValue({
+      entries: form
+        .getFieldsValue()
+        .entries.map((entry, i) =>
+          i === index ? { ...entry, [field]: value } : entry
+        ),
+    });
   };
 
   const columns = [
     {
-      title: "Date",
-      dataIndex: "date",
-      key: "date",
-      render: (date) => moment(date).format("YYYY-MM-DD"),
+      title: "Sno Credit",
+      dataIndex: "Sno_Credit",
+      key: "Sno_Credit",
     },
-    { title: "Phone Number", dataIndex: "phoneNumber", key: "phoneNumber" },
-    { title: "Credit", dataIndex: "credit", key: "credit" },
-    { title: "Balance", dataIndex: "balance", key: "balance" },
     {
-      title: "Entries",
-      dataIndex: "entries",
-      key: "entries",
-      render: (entries) =>
-        entries.map((entry) => (
-          <div key={entry.sNo}>
-            <span>
-              {entry.description} - Debit: {entry.debit} - Balance:{" "}
-              {entry.balance} - S.No: {entry.sNo}
-            </span>
-          </div>
-        )),
+      title: "Sno Debit",
+      dataIndex: "Sno_debit",
+      key: "Sno_debit",
+    },
+    {
+      title: "Balance Credit",
+      dataIndex: "balance_Credit",
+      key: "balance_Credit",
+    },
+    {
+      title: "Balance Debit",
+      dataIndex: "balance_debit",
+      key: "balance_debit",
+    },
+    {
+      title: "Credit Credit",
+      dataIndex: "credit_Credit",
+      key: "credit_Credit",
+    },
+    {
+      title: "Date Credit",
+      dataIndex: "date_Credit",
+      key: "date_Credit",
+    },
+    {
+      title: "Date Debit",
+      dataIndex: "date_debit",
+      key: "date_debit",
+    },
+    {
+      title: "Debit Debit",
+      dataIndex: "debit_debit",
+      key: "debit_debit",
+    },
+    {
+      title: "Phone Number Credit",
+      dataIndex: "phoneNumber_Credit",
+      key: "phoneNumber_Credit",
     },
   ];
 
@@ -104,71 +129,68 @@ const LedgerEntry = () => {
             gap: "5px",
           }}
         >
-          <Form.Item name="date" label="Date" rules={[{ required: true }]}>
+          <Form.Item
+            name="snoCredit"
+            label="Sno Credit"
+            rules={[{ required: true }]}
+          >
+            <Input type="number" />
+          </Form.Item>
+          <Form.Item
+            name="dateCredit"
+            label="Date Credit"
+            rules={[{ required: true }]}
+          >
             <DatePicker />
           </Form.Item>
           <Form.Item
-            name="phoneNumber"
-            label="Phone Number"
+            name="phoneNumberCredit"
+            label="Phone Number Credit"
             rules={[{ required: true }]}
           >
             <Input />
           </Form.Item>
-          <Form.Item name="credit" label="Credit" rules={[{ required: true }]}>
-            <Input type="number" />
-          </Form.Item>
           <Form.Item
-            name="balance"
-            label="Balance"
+            name="creditCredit"
+            label="Credit Credit"
             rules={[{ required: true }]}
           >
             <Input type="number" />
           </Form.Item>
-
-          {entries.map((entry, index) => (
-            <div key={index}>
-              <Form.Item label={`Entry ${index + 1} Description`} required>
-                <Input
-                  value={entry.description}
-                  onChange={(e) =>
-                    handleEntryChange(index, "description", e.target.value)
-                  }
-                />
-              </Form.Item>
-              <Form.Item label={`Entry ${index + 1} Debit`} required>
-                <Input
-                  type="number"
-                  value={entry.debit}
-                  onChange={(e) =>
-                    handleEntryChange(index, "debit", e.target.value)
-                  }
-                />
-              </Form.Item>
-              <Form.Item label={`Entry ${index + 1} Balance`} required>
-                <Input
-                  type="number"
-                  value={entry.balance}
-                  onChange={(e) =>
-                    handleEntryChange(index, "balance", e.target.value)
-                  }
-                />
-              </Form.Item>
-              <Form.Item label={`Entry ${index + 1} S.No`} required>
-                <Input
-                  type="number"
-                  value={entry.sNo}
-                  onChange={(e) =>
-                    handleEntryChange(index, "sNo", e.target.value)
-                  }
-                />
-              </Form.Item>
-            </div>
-          ))}
-
-          <Form.Item>
-            <Button type="dashed" onClick={addEntry}>
-              Add Entry
-            </Button>
+          <Form.Item
+            name="balanceCredit"
+            label="Balance Credit"
+            rules={[{ required: true }]}
+          >
+            <Input type="number" />
+          </Form.Item>
+          <Form.Item
+            name="dateDebit"
+            label="Date Debit"
+            rules={[{ required: true }]}
+          >
+            <DatePicker />
+          </Form.Item>
+          <Form.Item
+            name="debitDebit"
+            label="Debit Debit"
+            rules={[{ required: true }]}
+          >
+            <Input type="number" />
+          </Form.Item>
+          <Form.Item
+            name="balanceDebit"
+            label="Balance Debit"
+            rules={[{ required: true }]}
+          >
+            <Input type="number" />
+          </Form.Item>
+          <Form.Item
+            name="snoDebit"
+            label="Sno Debit"
+            rules={[{ required: true }]}
+          >
+            <Input type="number" />
           </Form.Item>
 
           <Form.Item>
@@ -177,8 +199,7 @@ const LedgerEntry = () => {
             </Button>
           </Form.Item>
         </Form>
-
-        <Table columns={columns} dataSource={dataSource} rowKey="date" />
+        <Table columns={columns} dataSource={dataSource} />
       </div>
     </div>
   );

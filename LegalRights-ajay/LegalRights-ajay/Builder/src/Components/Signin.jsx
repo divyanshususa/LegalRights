@@ -25,7 +25,8 @@ const SignIn = () => {
     try {
       console.log("here1 ");
       const response = await fetch(
-        "https://legalrights-1.onrender.com/login/auth",
+        "https://legalrights-9glt.onrender.com/login/auth",
+        // baseURL: "https://legalrights-9glt.onrender.com",
         {
           method: "POST",
           headers: {
@@ -46,7 +47,7 @@ const SignIn = () => {
       localStorage.setItem("user", JSON.stringify(data.user)); // Store token in localStorage
       // Navigate to /user on successful login
       if (data.role === "admin") {
-        navigate("/admin");
+        navigate("/user");
       } else {
         navigate("/user");
       }
