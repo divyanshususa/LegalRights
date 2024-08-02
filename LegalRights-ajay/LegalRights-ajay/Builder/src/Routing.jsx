@@ -20,8 +20,15 @@ import TemplateAdd from "./Components/TemplateAdd";
 import Witness from "./Components/TemplateLayout";
 import Party1 from "./TemplateHeader/Party1";
 import General from "./TemplateHeader/General";
-import { TemplteContext, TemplteProvider } from "./Hooks/TemplateContext";
 import FeePayment from "./TemplateHeader/FeePayment";
+import Buyer from "./TemplateHeader/Buyer";
+import Seller from "./TemplateHeader/Seller";
+import Property from "./TemplateHeader/Property";
+import {
+  TemplteContext,
+  TemplteProvider,
+  useTemplate,
+} from "./Hooks/TemplateContext";
 
 export default function Routing() {
   const a = "1";
@@ -88,6 +95,9 @@ export default function Routing() {
               <Route path="party1" element={<Party1 />} />
               <Route path="feepayment" element={<FeePayment />} />
               <Route path="general" element={<General />} />
+              <Route path="buyer" element={<Buyer />} />
+              <Route path="seller" element={<Seller />} />
+              <Route path="property" element={<Property />} />
             </Route>
           </Routes>
         </BrowserRouter>
