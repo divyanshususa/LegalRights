@@ -1,5 +1,3 @@
-// placeholders.js
-
 export const templatePlaceholders = {
   "Sale Deed": [
     "Name of Colony",
@@ -60,16 +58,21 @@ export const templatePlaceholders = {
     "Location / Land Mark",
   ],
   "BAYANA SAMPLE FINAL": [
-    "Date",
-  
-
-    "Total Amount",
-    "Ernst Amount",
-    "Balance Payment"
-
+    "D1",
+    "T1",
+    "E1",
+    "A1",
+    "B1",
   ],
+
   Will: [],
   "FAMILY WILL": [],
   "Rent Deed": [],
   "VEHICLE SALE AND PURTUESED-5": [],
 };
+// "BAYANA SAMPLE FINAL": [
+//   { key: "D1", label: "as", value: "Date" },
+//   { key: "T1", label: "", value: "Total Amount" },
+//   { key: "E1", label: "As", value: "Ernst Amount" },
+//   { key: "B1", label: "As", value: "Balance Payment" },
+// ],

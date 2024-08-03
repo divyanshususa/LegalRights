@@ -117,16 +117,27 @@ export default function General() {
     }
   };
 
-  const handleReplaceContent = () => {
-    let updatedContent = content;
-    const placeholders = templatePlaceholders[template] || [];
-    for (const placeholder of placeholders) {
-      const value = inputValues[placeholder] || placeholder;
-      const regex = new RegExp(`\\$\\{\\*\\*${placeholder}\\*\\*\\}`, "g");
-      updatedContent = updatedContent.replace(regex, value);
-    }
-    updateContent(updatedContent);
-  };
+const handleReplaceContent = () => {
+  let updatedContent = content;
+  const placeholders = templatePlaceholders[template] || [];
+
+  for (const placeholder of placeholders) {
+    const value = inputValues[placeholder] || placeholder;
+    const regex = new RegExp(`\\$\\{\\*\\*${placeholder}\\*\\*\\}`, "g");
+    updatedContent = updatedContent.replace(regex, value);
+  }
+
+  // Replace specific placeholders with the input values
+
+  updatedContent = updatedContent.replace(/S1/g, inputValues["S1"] || "S1");
+  updatedContent = updatedContent.replace(/E1/g, inputValues["E1"] || "E1");
+  updatedContent = updatedContent.replace(/A1/g, inputValues["A1"] || "A1");
+  updatedContent = updatedContent.replace(/B1/g, inputValues["B1"] || "B1");
+  updatedContent = updatedContent.replace(/D1/g, inputValues["D1"] || "D1");
+  updatedContent = updatedContent.replace(/P1/g, inputValues["P1"] || "P1");
+
+  updateContent(updatedContent);
+};
 
   useEffect(() => {
     console.log(
