@@ -59,10 +59,9 @@ export const templatePlaceholders = {
   ],
   "BAYANA SAMPLE FINAL": [
     "D1",
-    "T1",
     "E1",
     "A1",
-    "B1",
+    "B2",
   ],
 
   Will: [],

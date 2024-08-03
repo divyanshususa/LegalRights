@@ -26,6 +26,8 @@ const SignIn = () => {
       console.log("here1 ");
       const response = await fetch(
         "http://localhost:5000/login/auth",
+        // "https://legalrights-9glt.onrender.com/login/auth",
+       
         // baseURL: "https://legalrights-9glt.onrender.com",
         {
           method: "POST",
